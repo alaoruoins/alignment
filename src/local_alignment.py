@@ -192,9 +192,9 @@ class LocalAlignment:
         best_move = None
         
         direction_map = {
-            self.symbols.DELETION.value: (-1, 0),
+            self.symbols.DELETION.value: (0, -1),
             self.symbols.SUBSTITUTION.value: (-1, -1),
-            self.symbols.INSERTION.value: (0, -1),
+            self.symbols.INSERTION.value: (-1, 0),
             self.symbols.RESET.value: (0, 0)
         }
 

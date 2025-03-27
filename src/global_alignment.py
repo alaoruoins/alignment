@@ -183,9 +183,9 @@ class GlobalAlignment:
         total_score = scores_table[row][col].score
 
         direction_map = {
-            self.symbols.DELETION.value: (-1, 0),
+            self.symbols.DELETION.value: (0, -1),
             self.symbols.SUBSTITUTION.value: (-1, -1),
-            self.symbols.INSERTION.value: (0, -1)
+            self.symbols.INSERTION.value: (-1, 0)
         }
 
         # Iterating backwards to find the best path from the bottom right corner

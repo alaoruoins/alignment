@@ -30,4 +30,8 @@ TODO: Add Input Testing - WIP
 TODO: Figure out Header & footer - DONE ENOUGH
     - See if the footer can be permantely placed at the bottom, currently removed when alignment is executed - UNSURE IF POSSIBLE GIVEN STREAMLIT EXECUTION STRUCTURE
 
-TODO: AACGT and GGAACGT debug
+TODO: AACGT and GGAACGT debug - DONE
+
+TODO: fix alignment output on local global?
+
+TODO: fix lcs on local global?
