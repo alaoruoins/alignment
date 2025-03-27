@@ -38,4 +38,4 @@ TODO: set default animation speed faster
 
 TODO: realtime animation speed updates
 
-TODO: fix lcs on local global?
+TODO: non-implemented features : coming soon
