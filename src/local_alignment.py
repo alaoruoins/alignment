@@ -189,7 +189,8 @@ class LocalAlignment:
         path = []
         path_coordinates = [(row, col)]
         total_score = scores_table[row][col].score
-
+        best_move = None
+        
         direction_map = {
             self.symbols.DELETION.value: (-1, 0),
             self.symbols.SUBSTITUTION.value: (-1, -1),
@@ -198,7 +199,7 @@ class LocalAlignment:
         }
 
         # Iterating backwards to find the best path from the bottom right corner
-        while row > 0 or col > 0:
+        while (row > 0 or col > 0) and best_move != self.symbols.RESET.value:
 
             move_options = scores_table[row][col].direction
             best_move = None
@@ -216,6 +217,7 @@ class LocalAlignment:
                     # Ensures that the current move was the one actually performed
                     if move in move_options and score > best_score:
                         best_score, best_move = score, move
+
 
             # A move is always expected unless the end is reached        
             if best_move:
