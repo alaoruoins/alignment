@@ -3,7 +3,7 @@ from input_format_factory import InputFormatFactory
 from io import StringIO
 
 class MultipleAlignment:
-    def __init__(self, input_type):
+    def __init__(self, input_type, alignment_location):
         self.max_char_input = 50
         self.max_height_pixels = 150
         self.unparsed_sequences = list()
