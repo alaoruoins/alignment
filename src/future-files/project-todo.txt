@@ -34,4 +34,8 @@ TODO: AACGT and GGAACGT debug - DONE
 
 TODO: fix alignment output on local global?
 
+TODO: set default animation speed faster
+
+TODO: realtime animation speed updates
+
 TODO: fix lcs on local global?

@@ -10,7 +10,7 @@ class Cell:
         self.direction = direction
 
 class EditSymbols(Enum):
-    SUBSTITUTION = "↘"
+    MATCH = "↘"
     INSERTION = "↓"
     DELETION = "→"
     RESET = "⋅"
@@ -39,7 +39,7 @@ class LocalAlignment:
         insertion_score = self.min_int if col - 1 < 0 else int(scores_table[row][col - 1].score)
         deletion_score = self.min_int if row - 1 < 0 else int(scores_table[row - 1][col].score)
 
-        # Substitutions now don't require the same nucleotide
+        # MATCHs now don't require the same nucleotide
         subsitution_score = self.min_int if row - 1 < 0 or col - 1 < 0 else int(scores_table[row - 1][col - 1].score)
 
         # Get penalties from scoring matrix
@@ -69,7 +69,7 @@ class LocalAlignment:
             best_score = 0
 
         elif best_score == subsitution_indel_score:
-            best_direction = self.symbols.SUBSTITUTION.value
+            best_direction = self.symbols.MATCH.value
         
         elif best_score == insertion_indel_score:
             best_direction = self.symbols.INSERTION.value
@@ -193,7 +193,7 @@ class LocalAlignment:
         
         direction_map = {
             self.symbols.DELETION.value: (0, -1),
-            self.symbols.SUBSTITUTION.value: (-1, -1),
+            self.symbols.MATCH.value: (-1, -1),
             self.symbols.INSERTION.value: (-1, 0),
             self.symbols.RESET.value: (0, 0)
         }
@@ -276,15 +276,35 @@ class LocalAlignment:
 
         st.markdown(table_html, unsafe_allow_html=True)
 
-    def _construct_alignments(self, path: str, x_axis: list, y_axis: list) -> str:
-    
+    def _construct_alignments(self, path: str, path_coordinates: list, x_axis: list, y_axis: list) -> str:
+        
         final_S1, final_S2 = [], []
 
-        # Converting the lists to iterators allows for efficiently fetched elements
-        x_iter, y_iter = iter(x_axis[1:]), iter(y_axis[1:])  
+        end_coordinate = path_coordinates[-1]
+        row = end_coordinate[0] + 1
+        col = end_coordinate[1] + 1
+        
+        # Get the offset for string alignment output right
+        if (row < col):
+            for i in range(col - 1):
+                final_S1.append("_")
 
+            for i in range(col - 1):
+                final_S2.append(x_axis[i+1])
+
+        if (row > col):
+            for i in range(row - 1):
+                final_S2.append("_")
+
+            for i in range(row - 1):
+                final_S1.append(y_axis[i+1])
+
+        # Converting the lists to iterators allows for efficiently fetched elements
+        x_iter, y_iter = iter(x_axis[col:]), iter(y_axis[row:])  
+
+        path = path[1:]
         for direction in path:
-            if direction == self.symbols.SUBSTITUTION.value:  # Substitution (keep both characters)
+            if direction == self.symbols.MATCH.value:  # MATCH (keep both characters)
                 final_S1.append(next(x_iter))
                 final_S2.append(next(y_iter))
             elif direction == self.symbols.INSERTION.value:  # Insertion (gap in S1)
@@ -315,7 +335,7 @@ class LocalAlignment:
 
         self._show_best_path_table(path_coordinates, scores_table, x_axis, y_axis)
 
-        alignments = self._construct_alignments(path, x_axis, y_axis)
+        alignments = self._construct_alignments(path, path_coordinates, x_axis, y_axis)
 
         return alignments, self._construct_lcs(alignments), total_score
         

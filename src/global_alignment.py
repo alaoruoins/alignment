@@ -10,7 +10,7 @@ class Cell:
         self.direction = direction
 
 class EditSymbols(Enum):
-    SUBSTITUTION = "↘"
+    MATCH = "↘"
     INSERTION = "↓"
     DELETION = "→"
 
@@ -61,7 +61,7 @@ class GlobalAlignment:
 
         # Direction protocol priority: diagonal > top > left
         if best_score == subsitution_indel_score:
-            best_direction = self.symbols.SUBSTITUTION.value
+            best_direction = self.symbols.MATCH.value
         
         elif best_score == insertion_indel_score:
             best_direction = self.symbols.INSERTION.value
@@ -184,7 +184,7 @@ class GlobalAlignment:
 
         direction_map = {
             self.symbols.DELETION.value: (0, -1),
-            self.symbols.SUBSTITUTION.value: (-1, -1),
+            self.symbols.MATCH.value: (-1, -1),
             self.symbols.INSERTION.value: (-1, 0)
         }
 
@@ -273,7 +273,7 @@ class GlobalAlignment:
         x_iter, y_iter = iter(x_axis[1:]), iter(y_axis[1:])  
 
         for direction in path:
-            if direction == self.symbols.SUBSTITUTION.value:  # Substitution (keep both characters)
+            if direction == self.symbols.MATCH.value:  # MATCH (keep both characters)
                 final_S1.append(next(x_iter))
                 final_S2.append(next(y_iter))
             elif direction == self.symbols.INSERTION.value:  # Insertion (gap in S1)

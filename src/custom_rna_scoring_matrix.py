@@ -34,7 +34,7 @@ class CustomRNAScoringMatrix:
             
         self.scoring_matrix = st.data_editor(
             ss.dna_scoring_matrix, 
-            on_change=self.validate_scoring_matrix, 
+            # on_change=self.validate_scoring_matrix, 
             use_container_width=True,
             key=ss.table_uuid,
             args=[self.original_scoring_matrix]
