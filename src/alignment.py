@@ -78,7 +78,7 @@ class Alignment:
 
         def execute_alignment(sequence_input):
             
-            animation_speed = st.selectbox("Animation Speed (Seconds)", options=[2, 1, 0.5, 0])
+            animation_speed = st.selectbox("Animation Speed (Seconds)", options=[0.1, 0.5, 1, 2, 0])
 
             st.markdown(
                 """
@@ -102,7 +102,7 @@ class Alignment:
                     # TODO When this modules is updated, the alignment algorithm resets - figure how to keep the state of the alignment algorithm
                     # Should probably in the execute_alignment function to make that happen 
                     with pause_algorithm:
-                        if st.button("Pause"):
+                        if st.button("Stop"):
                             st.session_state.alignment_running = False
 
                     return self.alignment_type.execute_alignment(sequence_input, self.scoring_matrix.scoring_matrix, animation_speed)

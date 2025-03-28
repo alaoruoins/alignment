@@ -24,8 +24,8 @@ class Footer:
             footer = div()(
                 htfooter(style=footer_style)(
                     p(""),
-                    p("University of Washington Bothell CSSE"),
-                    p("This project was created by Shaun Cushman and Aaron Gröpper")
+                    p("View this project on github"),
+                    p("https://github.com/alaoruoins/alignment.git")
                 )
             )
         

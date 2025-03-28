@@ -308,11 +308,12 @@ class LocalAlignment:
                 final_S1.append(next(x_iter))
                 final_S2.append(next(y_iter))
             elif direction == self.symbols.INSERTION.value:  # Insertion (gap in S1)
-                final_S1.append("_")
-                final_S2.append(next(y_iter))
-            elif direction == self.symbols.DELETION.value:  # Deletion (gap in S2)
-                final_S1.append(next(x_iter))
+                final_S1.append(next(y_iter))
                 final_S2.append("_")
+            elif direction == self.symbols.DELETION.value:  # Deletion (gap in S2)
+                final_S1.append("_")
+                final_S2.append(next(x_iter))
+                
 
         return "".join(final_S1), "".join(final_S2)
 
