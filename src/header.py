@@ -10,8 +10,8 @@ class Header:
         def create_header():
 
             header_style = styles(
-                background_color="#660066",
-                color="black",
+                background="linear-gradient(to right, #CC6CE7, #6C63FF)",  # Gradient background
+                color="#6A1781",
                 text_align="center",
                 padding=px(20),
                 font_family="Arial, sans-serif",
@@ -33,7 +33,7 @@ class Header:
             header = div()(
                 htheader(style=header_style)(
                     h1(style=h1_style)("AlignView"),
-                    p(style=p_style)("Customizable Alignment Visualizer")
+                    p(style=p_style)("Customizable DNA, RNA and Protien Alignment Visualizer")
                 )
             )
 

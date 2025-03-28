@@ -9,7 +9,7 @@ class Footer:
         def create_footer():
 
             footer_style = styles(
-                background_color="#660066",
+                background="linear-gradient(to right, #966CE9, #CC6CE7)",
                 text_align="center",
                 padding=px(10),
                 font_family="Arial",
@@ -17,7 +17,8 @@ class Footer:
                 margin_top=px(100),
                 border_radius=px(15),
                 line_height=1.5,
-                color="white"
+                color="white",
+                font_weight="bold"
             )
         
             # Creating the footer content with htbuilder
