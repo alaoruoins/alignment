@@ -33,7 +33,7 @@ class Header:
             header = div()(
                 htheader(style=header_style)(
                     h1(style=h1_style)("AlignView"),
-                    p(style=p_style)("Customizable DNA, RNA and Protien Alignment Visualizer")
+                    p(style=p_style)("Customizable DNA, RNA and Protein Alignment Visualizer")
                 )
             )
 
